@@ -10,10 +10,9 @@ let resp;
 
 const generarPreguntaAleatoria = () => {
     do {
-        aleatorio = (Math.random() * preguntasHistoriaArgentina.length).toFixed();
+        aleatorio = Number((Math.random() * preguntasHistoriaArgentina.length).toFixed());
         numerosGenerados.push(aleatorio);
     } while (!numerosGenerados.includes(aleatorio));
-    console.log(numerosGenerados);
     return preguntasHistoriaArgentina[aleatorio];
 }
 const juegoTerminado = (respuestasCorrectas) => {
@@ -51,7 +50,7 @@ cargarPreguntaRespuestas((interrogante));
 
 opciones.addEventListener('click', (e) => {
     totalDePreguntas++;
-    if (e.target.attributes[1].value == interrogante.respuestaCorrecta) {
+    if (Number(e.target.attributes[1].value) === interrogante.respuestaCorrecta) {
         respuestasCorrectas++;
         Swal.fire({
             icon: "success",

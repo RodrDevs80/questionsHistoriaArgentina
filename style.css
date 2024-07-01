@@ -190,14 +190,23 @@ footer > p > i {
 }
 @media only screen and (max-width: 600px) {
   .banner {
-    height: 103vh;
+    margin-top: -911px;
+    height: 126vh;
   }
   .pregunta > h2 {
     font-size: medium;
   }
+  .opciones {
+    grid-template-columns: 1fr;
+    place-items: center;
+    gap: 20px;
+  }
+  .opciones > div {
+    width: 80%;
+  }
   .conteiner-preguntas {
     width: 80%;
-    height: 90vh;
+    height: 116vh;
     padding: 10px;
     margin: 30px auto;
   }
@@ -209,6 +218,7 @@ footer > p > i {
     height: 102vh;
   }
   .conteiner-preguntas {
+    height: 90vh;
     padding: 10px;
     margin: 30px auto;
   }
