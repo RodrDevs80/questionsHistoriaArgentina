@@ -2,19 +2,37 @@ const btnJugar = document.getElementById('btn-jugar');
 const opciones = document.getElementById('opciones');
 const main = document.querySelector('.conteiner-preguntas');
 const btnBanner = document.getElementById('btn-banner');
-const numerosGenerados = [];
+const numerosGenerados = new Set(); // Usar Set para mejor rendimiento
 let aleatorio;
 let totalDePreguntas = 0;
 let respuestasCorrectas = 0;
 let resp;
 
+/* const esta = (numero, arreglo) => {
+    for (let i = 0; i < arreglo.length; i++) {
+        if (arreglo[i] !== numero) return false;
+        else return true;
+    }
+}
+
 const generarPreguntaAleatoria = () => {
     do {
         aleatorio = Number((Math.random() * preguntasHistoriaArgentina.length).toFixed());
         numerosGenerados.push(aleatorio);
-    } while (!numerosGenerados.includes(aleatorio));
+    } while (esta(aleatorio, numerosGenerados));
     return preguntasHistoriaArgentina[aleatorio];
-}
+} */
+const generarPreguntaAleatoria = () => {
+    while (true) {
+        const aleatorio = Math.floor(Math.random() * preguntasHistoriaArgentina.length);
+
+        if (!numerosGenerados.has(aleatorio)) {
+            numerosGenerados.add(aleatorio);
+            return preguntasHistoriaArgentina[aleatorio];
+        }
+    }
+};
+
 const juegoTerminado = (respuestasCorrectas) => {
     const div = document.createElement('div');
     div.classList.add('banner');
@@ -45,8 +63,6 @@ const cargarPreguntaRespuestas = (preguntaAleatoria) => {
 
 let interrogante = generarPreguntaAleatoria();
 cargarPreguntaRespuestas((interrogante));
-
-
 
 opciones.addEventListener('click', (e) => {
     totalDePreguntas++;
